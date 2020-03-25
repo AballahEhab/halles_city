@@ -1,23 +1,48 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:halles_city/UI_componants/hall_properties.dart';
+import 'package:halles_city/models/schedule.dart';
 import 'package:intl/intl.dart';
 
 import '../constants.dart';
 
 class ReservationScreen extends StatefulWidget {
+
+  Schedule hallSchedule;
+
+
+  ReservationScreen();
+
+
   @override
   _ReservationScreenState createState() => _ReservationScreenState();
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
   String value;
-  bool isSatrtingValid = false;
-  bool isEndValid = false;
+  bool hasAName = true;
+
+  bool isSatrtingValid = true;
+  bool isEndValid = true;
   final format = DateFormat("yyyy-MM-dd HH:mm");
+  DateTime statrtingDate, endDate;
+  String customerName, bussyMessage;
 
   @override
   Widget build(BuildContext context) {
+    widget.hallSchedule = Schedule();
+    widget.hallSchedule.addNewReservation(
+        DateTime(2020, 5, 3, 7), DateTime(2020, 5, 3, 9), 'abdallah');
+    widget.hallSchedule.addNewReservation(
+        DateTime(2020, 5, 3, 9), DateTime(2020, 5, 3, 11), 'abdallah');
+    widget.hallSchedule.addNewReservation(
+        DateTime(2020, 5, 3, 12), DateTime(2020, 5, 3, 14), 'abdallah');
+    widget.hallSchedule.addNewReservation(
+        DateTime(2020, 5, 3, 15), DateTime(2020, 5, 3, 17), 'abdallah');
+    widget.hallSchedule.addNewReservation(
+        DateTime(2020, 5, 3, 20), DateTime(2020, 5, 3, 21), 'abdallah');
+    widget.hallSchedule.addNewReservation(
+        DateTime(2020, 5, 3, 22), DateTime(2020, 5, 3, 23), 'abdallah');
     return SafeArea(
       child: Scaffold(
         // creating an app bar
@@ -44,37 +69,43 @@ class _ReservationScreenState extends State<ReservationScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: DropdownButton(
-                  value: value,
-                  hint: Text('Choose a day'),
-                  isExpanded: true,
-                  onChanged: (NewValue) {
-                    print(value);
-                    this.value = NewValue;
-                  },
-                  items: <DropdownMenuItem>[
-                    DropdownMenuItem(
-                      child: Text('sat'),
-                    ),
-                    DropdownMenuItem(
-                      child: Text('sat'),
-                    ),
-                    DropdownMenuItem(
-                      child: Text('sat'),
-                    ),
-                    DropdownMenuItem(
-                      child: Text('sat'),
-                    )
-                  ],
-                ),
-              ),
+//              Padding(
+//                padding: const EdgeInsets.all(16.0),
+//                child: DropdownButton(
+//                  value: value,
+//                  hint: Text('Choose a day'),
+//                  isExpanded: true,
+//                  onChanged: (NewValue) {
+//                    print(value);
+//                    this.value = NewValue;
+//                  },
+//                  items: <DropdownMenuItem>[
+//                    DropdownMenuItem(
+//                      child: Text('sat'),
+//                    ),
+//                    DropdownMenuItem(
+//                      child: Text('sat'),
+//                    ),
+//                    DropdownMenuItem(
+//                      child: Text('sat'),
+//                    ),
+//                    DropdownMenuItem(
+//                      child: Text('sat'),
+//                    )
+//                  ],
+//                ),
+//              ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextFormField(
+                  onChanged: (value) {
+                    customerName = value;
+                  },
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
+                      errorText: hasAName
+                          ? null
+                          : 'You must enter a reservation name',
                       border: OutlineInputBorder(),
                       labelText: 'Reservation Name',
                       icon: Icon(Icons.perm_identity)),
@@ -89,7 +120,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     labelText: 'Starting Date',
                     prefixText: 'From: ',
                     alignLabelWithHint: true,
-                    errorText: isSatrtingValid ? 'hjgjhjg' : null,
+                    errorText: isSatrtingValid ? null : bussyMessage,
                     icon: Icon(
                       Icons.calendar_today,
                     ),
@@ -107,12 +138,13 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         initialTime: TimeOfDay.fromDateTime(
                             currentValue ?? DateTime.now()),
                       );
-                      print('done');
-                      setState(() {
-                        isSatrtingValid = true;
-                      });
+                      statrtingDate = DateTime(
+                          date.year, date.month, date.day, time.hour,
+                          time.minute);
+                      print(statrtingDate);
                       return DateTimeField.combine(date, time);
                     } else {
+                      statrtingDate = currentValue;
                       print(currentValue);
                       return currentValue;
                     }
@@ -128,7 +160,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     labelText: 'End Date',
                     prefixText: 'To: ',
                     alignLabelWithHint: true,
-                    errorText: isEndValid ? 'hjgjhjg' : null,
+                    errorText: isEndValid ? null : bussyMessage,
                     icon: Icon(
                       Icons.calendar_today,
                     ),
@@ -146,12 +178,12 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         initialTime: TimeOfDay.fromDateTime(
                             currentValue ?? DateTime.now()),
                       );
-                      print('done');
-                      setState(() {});
-
+                      endDate = DateTime(
+                          date.year, date.month, date.day, time.hour,
+                          time.minute);
                       return DateTimeField.combine(date, time);
                     } else {
-                      print(currentValue);
+                      endDate = currentValue;
                       return currentValue;
                     }
                   },
@@ -160,7 +192,63 @@ class _ReservationScreenState extends State<ReservationScreen> {
               HallProperties.customButton(
                   context: this.context,
                   text: ' Summit Reservation ',
-                  onclick: () {})
+                  onclick: () {
+                    if (customerName == null) {
+                      hasAName = false;
+                    } else {
+                      hasAName = true;
+                    }
+
+
+                    if (statrtingDate != null) {
+                      if (widget.hallSchedule.checkStartingDate(
+                          statrtingDate) == null) {
+                        isSatrtingValid = true;
+                      } else {
+                        isSatrtingValid = false;
+                        bussyMessage = 'the hall is reserved from '
+                            '${widget.hallSchedule
+                            .checkStartingDate(statrtingDate)
+                            .start
+                            .hour}'
+                            ' to  ${widget.hallSchedule
+                            .checkStartingDate(statrtingDate)
+                            .end
+                            .hour}';
+                      }
+                    } else {
+                      isSatrtingValid = false;
+                      bussyMessage = 'please chose a date';
+                    }
+
+
+                    if (endDate != null) {
+                      if (widget.hallSchedule.checkEndDate(endDate) == null) {
+                        isEndValid = true;
+                      } else {
+                        isEndValid = false;
+                        bussyMessage = 'the hall is reserved from '
+                            '${widget.hallSchedule
+                            .checkEndDate(endDate)
+                            .start
+                            .hour}'
+                            ' to  ${widget.hallSchedule
+                            .checkEndDate(endDate)
+                            .end
+                            .hour}';
+                      }
+                    } else {
+                      isEndValid = false;
+                      bussyMessage = 'please chose a date';
+                    }
+                    print(hasAName);
+                    setState(() {
+                      hasAName;
+                      isSatrtingValid;
+                      isEndValid;
+                      bussyMessage;
+                    });
+                  })
             ],
           ),
         ),
