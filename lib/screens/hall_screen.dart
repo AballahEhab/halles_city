@@ -265,7 +265,9 @@ class _HallScreenState extends State<HallScreen> {
                           onclick: () {
                             Navigator.push(
                                 context, MaterialPageRoute(builder: (context) =>
-                                ReservationScreen())); // routing the
+                                ReservationScreen(
+                                  hallSchedule: widget.hallObj.schedule,
+                                ))); // routing the
                           },
                         )
                     ),

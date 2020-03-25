@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halles_city/models/hall.dart';
+import 'package:halles_city/models/schedule.dart';
 import 'package:halles_city/models/workspace.dart';
 import 'package:halles_city/models/workspace_room.dart';
 import 'package:halles_city/screens/workspace_screen.dart';
@@ -94,8 +95,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         rating: 2.5,
                         WC: false,
                         wifi: true);
+                    Schedule hallSchedule = Schedule();
+                    hallSchedule.addNewReservation(
+                        DateTime(2020, 5, 3, 7), DateTime(2020, 5, 3, 9),
+                        'abdallah');
+                    hallSchedule.addNewReservation(
+                        DateTime(2020, 5, 3, 9), DateTime(2020, 5, 3, 11),
+                        'abdallah');
+                    hallSchedule.addNewReservation(
+                        DateTime(2020, 5, 3, 12), DateTime(2020, 5, 3, 14),
+                        'abdallah');
+                    hallSchedule.addNewReservation(
+                        DateTime(2020, 5, 3, 15), DateTime(2020, 5, 3, 17),
+                        'abdallah');
+                    hallSchedule.addNewReservation(
+                        DateTime(2020, 5, 3, 20), DateTime(2020, 5, 3, 21),
+                        'abdallah');
+                    hallSchedule.addNewReservation(
+                        DateTime(2020, 5, 3, 22), DateTime(2020, 5, 3, 23),
+                        'abdallah');
                     _hall.addNamedProperty(name: 'Board', value: 'Unavailable');
                     _hall.addpropertyIcon(name: Icons.kitchen, value: false);
+                    _hall.schedule = hallSchedule;
 
                     return HallScreen(hallObj: _hall);
                   }),

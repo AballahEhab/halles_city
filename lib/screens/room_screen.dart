@@ -143,7 +143,9 @@ class _RoomScreenState extends State<RoomScreen> {
                           onclick: () {
                             Navigator.push(
                                 context, MaterialPageRoute(builder: (context) =>
-                                ReservationScreen())); // routing the
+                                ReservationScreen(
+                                  hallSchedule: widget.currentRoom.schedule,
+                                ))); // routing the
                           },
                         )
                     ),

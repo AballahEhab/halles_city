@@ -11,7 +11,7 @@ class ReservationScreen extends StatefulWidget {
   Schedule hallSchedule;
 
 
-  ReservationScreen();
+  ReservationScreen({this.hallSchedule});
 
 
   @override
@@ -30,19 +30,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    widget.hallSchedule = Schedule();
-    widget.hallSchedule.addNewReservation(
-        DateTime(2020, 5, 3, 7), DateTime(2020, 5, 3, 9), 'abdallah');
-    widget.hallSchedule.addNewReservation(
-        DateTime(2020, 5, 3, 9), DateTime(2020, 5, 3, 11), 'abdallah');
-    widget.hallSchedule.addNewReservation(
-        DateTime(2020, 5, 3, 12), DateTime(2020, 5, 3, 14), 'abdallah');
-    widget.hallSchedule.addNewReservation(
-        DateTime(2020, 5, 3, 15), DateTime(2020, 5, 3, 17), 'abdallah');
-    widget.hallSchedule.addNewReservation(
-        DateTime(2020, 5, 3, 20), DateTime(2020, 5, 3, 21), 'abdallah');
-    widget.hallSchedule.addNewReservation(
-        DateTime(2020, 5, 3, 22), DateTime(2020, 5, 3, 23), 'abdallah');
     return SafeArea(
       child: Scaffold(
         // creating an app bar
@@ -248,6 +235,11 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       isEndValid;
                       bussyMessage;
                     });
+
+                    if (hasAName && isSatrtingValid && isEndValid) {
+                      widget.hallSchedule.addNewReservation(
+                          statrtingDate, endDate, customerName);
+                    }
                   })
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halles_city/UI_componants/hall_properties.dart';
+import 'package:halles_city/models/schedule.dart';
 
 import '../constants.dart';
 
@@ -12,11 +13,14 @@ class Place {
   //a list of images
   List images;
 
+  Schedule schedule;
+
   Place({
     this.images,
     this.placeName,
   }) {
     this.namedProperty = Map();
+    schedule = Schedule();
   }
 
   //adding a named property to the hall
