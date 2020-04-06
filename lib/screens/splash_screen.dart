@@ -21,7 +21,13 @@ class _SplashState extends State<Splash> {
       ),
       photoSize: 88.0,
       image: Image.asset('images/lightLogo.png', fit: BoxFit.cover,),
-      loadingText: Text(lT,style: TextStyle(fontSize: 11.0,color: Colors.black54),),
+      loadingText: Text(
+        lT,
+        style: TextStyle(
+            fontSize: 11.0,
+            color: Colors.black54
+        ),
+      ),
       seconds: 5,
       navigateAfterSeconds: LoginScreen(),
       //this will be a method
