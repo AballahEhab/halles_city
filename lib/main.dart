@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:halles_city/screens/home_screen(empty).dart';
+import 'package:halls_city/screens/home_screen(empty).dart';
+import 'package:halls_city/screens/splash_screen.dart';
 
 
 void main() => runApp(MyApp());

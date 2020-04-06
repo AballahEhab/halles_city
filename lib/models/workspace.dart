@@ -1,5 +1,5 @@
-import 'package:halles_city/models/hall.dart';
-import 'package:halles_city/models/workspace_room.dart';
+import 'package:halls_city/models/hall.dart';
+import 'package:halls_city/models/workspace_room.dart';
 
 class WorkSpace extends Hall {
   List<Room> rooms;

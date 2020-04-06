@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:halles_city/models/place.dart';
+import 'package:halls_city/models/place.dart';
 
 
 // room class is a model for workspace room with its all properies

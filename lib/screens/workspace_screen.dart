@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:halles_city/UI_componants/circle_tab_indicator.dart';
-import 'package:halles_city/UI_componants/get_netWork_image.dart';
-import 'package:halles_city/UI_componants/hall_properties.dart';
-import 'package:halles_city/models/workspace.dart';
-import 'package:halles_city/screens/room_screen.dart';
+import 'package:halls_city/UI_componants/circle_tab_indicator.dart';
+import 'package:halls_city/UI_componants/get_netWork_image.dart';
+import 'package:halls_city/UI_componants/hall_properties.dart';
+import 'package:halls_city/models/workspace.dart';
+import 'package:halls_city/screens/room_screen.dart';
 
 import '../constants.dart' as constant;
 

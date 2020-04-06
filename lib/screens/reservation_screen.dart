@@ -1,7 +1,7 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-import 'package:halles_city/UI_componants/hall_properties.dart';
-import 'package:halles_city/models/schedule.dart';
+import 'package:halls_city/UI_componants/hall_properties.dart';
+import 'package:halls_city/models/schedule.dart';
 import 'package:intl/intl.dart';
 
 import '../constants.dart';

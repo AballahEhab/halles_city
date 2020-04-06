@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:halles_city/models/hall.dart';
-import 'package:halles_city/models/schedule.dart';
-import 'package:halles_city/models/workspace.dart';
-import 'package:halles_city/models/workspace_room.dart';
-import 'package:halles_city/screens/workspace_screen.dart';
+import 'package:halls_city/models/hall.dart';
+import 'package:halls_city/models/schedule.dart';
+import 'package:halls_city/models/workspace.dart';
+import 'package:halls_city/models/workspace_room.dart';
+import 'package:halls_city/screens/workspace_screen.dart';
 
 import '../constants.dart';
 import 'hall_screen.dart';

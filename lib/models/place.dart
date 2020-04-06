@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:halles_city/UI_componants/hall_properties.dart';
-import 'package:halles_city/models/schedule.dart';
+import 'package:halls_city/UI_componants/hall_properties.dart';
+import 'package:halls_city/models/schedule.dart';
 
 import '../constants.dart';
 

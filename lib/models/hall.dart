@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:halles_city/UI_componants/hall_properties.dart';
-import 'package:halles_city/models/place.dart';
+import 'package:halls_city/UI_componants/hall_properties.dart';
+import 'package:halls_city/models/place.dart';
 
 //this class is a parent class for all halls categories
 

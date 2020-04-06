@@ -1,4 +1,4 @@
-import 'package:halles_city/models/reservation.dart';
+import 'package:halls_city/models/reservation.dart';
 
 class Schedule {
   List<Reservation> reservations;

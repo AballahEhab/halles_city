@@ -1,0 +1,4 @@
+class userData{
+  String currentUserId;
+
+}

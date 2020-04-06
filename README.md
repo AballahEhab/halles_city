@@ -1,4 +1,4 @@
-# halles_city
+# halls_city
 
 A new Flutter application.
 
